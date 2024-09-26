@@ -1,10 +1,8 @@
 public class NodeList<T> {
     private Node<T> head;
     private Node<T> tail;
-    private int size;
 
     public void addNodeNext(T data) {
-        size++;
         if (head == null) {
             head = new Node<>(data);
             tail = head;
@@ -15,7 +13,6 @@ public class NodeList<T> {
     }
 
     public void addNodePrev(T data) {
-        size++;
         if (head == null) {
             head = new Node<>(data, null, null);
             tail = head;
@@ -34,6 +31,19 @@ public class NodeList<T> {
                 tail.getPrev().setNext(null);
             }else {
                 tail = null;
+            }
+        }
+    }
+
+    public void deletePrevNode(){
+        if (head == null) {
+            System.out.println("Node is empty");
+        }else{
+            if (head.getNext() != null) {
+                head.getNext().setPrev(null);
+                head = head.getNext();
+            }else{
+                head = null;
             }
         }
     }
